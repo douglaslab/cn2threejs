@@ -117,8 +117,8 @@ class CadnanoThreeJs(object):
 
         with open(output_path, 'w') as outfile:
             outfile.write(json.dumps(oligo_coords))
-        with open(viewer_path, 'w') as viewerfile:
-            viewerfile.write('var DATA = ' + json.dumps(oligo_coords)+ ';')
+        # with open(viewer_path, 'w') as viewerfile:
+        #     viewerfile.write('var DATA = ' + json.dumps(oligo_coords)+ ';')
     # end def
 
     def getOligoCoords(self):
@@ -171,7 +171,6 @@ def main():
     parser = argparse.ArgumentParser(formatter_class=argparse.ArgumentDefaultsHelpFormatter)
     parser.add_argument('--input', '-i', type=str, required=True, nargs=1, metavar='FILE', help='Cadnano JSON file')
     parser.add_argument('--output', '-o', type=str, nargs='?', metavar='DIR', help='Output directory')
-    parser.add_argument('--seq', '-s', type=str, nargs='?', metavar='SEQUENCE.txt', help='Scaffold sequence file')
     args = parser.parse_args()
 
     if args.input is None:
