@@ -15,22 +15,6 @@ renderer.setPixelRatio( window.devicePixelRatio )
 container.appendChild( renderer.domElement )
 
 var controls = new THREE.OrbitControls( camera, renderer.domElement )
-var clock = new THREE.Clock()
-
-var colors = [
-0xcc0000,
-0xf74308,
-0xf7931e,
-0xaaaa00,
-0x57bb00,
-0x007200,
-0x03b6a2,
-0x1700de,
-0x7300de,
-0xb8056c,
-0x333333,
-0x888888
-]
 
 var resolution = new THREE.Vector2( window.innerWidth, window.innerHeight )
 var origin = new THREE.Object3D()
@@ -91,16 +75,17 @@ function createLines() {
     for (var j = 0; j < coords.length; j++) {
       line.vertices.push(new THREE.Vector3(coords[j][0], coords[j][1], -coords[j][2]))
     }
-    if (coords.length > 5000) {
-      makeLine( line, 0x0066cc, 0.02 )
-    } else {
-      // makeLine( line, DATA[i].color )
-      makeLine( line, colors[Math.floor(Math.random() * colors.length)], 0.02 )
+
+
+    if (coords.length > 2000) {  // override scaffold color
+      console.log(DATA[i].name)
     }
+    makeLine( line, DATA[i].color )
+
   }
   
   var ctr = new THREE.Box3().setFromObject(graph).getCenter(new THREE.Vector3())
-  graph.position.x = ctr.x
+  graph.position.x = -ctr.x
   graph.position.y = -ctr.y
   graph.position.z = -ctr.z
 }
@@ -111,7 +96,6 @@ function onWindowResize() {
 
  var w = container.clientWidth
  var h = container.clientHeight
-
  var aspect = w / h
 
  camera.left   = - frustumSize * aspect / 2
@@ -120,9 +104,7 @@ function onWindowResize() {
  camera.bottom = - frustumSize / 2
 
  camera.updateProjectionMatrix()
-
  renderer.setSize( w, h )
-
  resolution.set( w, h )
 
 }
