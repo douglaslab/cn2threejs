@@ -6,10 +6,7 @@ cn2threejs reads in a cadnano json file and writes a coordinate json file.
 
 ```
 mkvirtualenv myvenv
-pip3 install PyQt5==5.10.0 pandas termcolor
-git clone https://github.com/douglaslab/cadnano2.5
-cd cadnano2.5/
-python3 setup.py install
+pip3 install PyQt5 pandas termcolor git+https://github.com/douglaslab/cadnano2.5
 ```
 
 ## Installation (future, doesn't work yet)
